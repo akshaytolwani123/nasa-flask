@@ -29,12 +29,12 @@ def img():
     document.add_paragraph(caption)
     document.save('nasa.docx')
     os.remove("nasa.jpg")
-    os.system("lowriter --headless --convert-to pdf nasa.docx")
+    os.system("libreoffice --headless --convert-to pdf nasa.docx")
     return flask.render_template("image.html", src = img_url)
     os.remove("nasa.docx")
 @app.route("/pdf", methods=['GET'])
 def rr():
-    return flask.send_file("nasa.pdf",as_attachment=True)
+    return flask.send_file("nasa.pdf")
     os.remove("nasa.pdf")
 
 if __name__ == '__main__':
