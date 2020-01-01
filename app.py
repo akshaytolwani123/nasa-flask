@@ -15,13 +15,12 @@ def index():
 
 @app.route("/image", methods=['POST'])
 def img():
-    api_key = flask.request.form["api-key"]
     date = flask.request.form["date"]
     date_form = datetime.datetime.strptime(date, '%Y-%m-%d').date()
     date_today = datetime.date.today()
     if date_form > date_today:
         flask.abort(404)
-    url = "https://api.nasa.gov/planetary/apod?date=" + date + "&hd=True&api_key=" + api_key
+    url = "https://api.nasa.gov/planetary/apod?date=" + date + "&hd=True&api_key=u6vr4iu4MnBKhpZO9o3HLyoMwQqKTS1TyIR5kxHi"
     img_url = requests.get(url).json().get('hdurl')
     caption = requests.get(url).json().get('explanation')
     wget.download(img_url, out="nasa.jpg")
