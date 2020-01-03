@@ -30,6 +30,7 @@ def img():
     document.add_paragraph(caption)
     document.save('nasa.docx')
     os.remove("nasa.jpg")
+#Use convert api
     convertapi.api_secret = 'yNNCmwvXeDwST4yd'
     convertapi.convert('pdf', {
     'File': 'nasa.docx'
