@@ -6,6 +6,7 @@ import requests
 from docx import Document
 import os
 from time import sleep
+import convertapi
 
 app = flask.Flask(__name__)
 
@@ -29,7 +30,10 @@ def img():
     document.add_paragraph(caption)
     document.save('nasa.docx')
     os.remove("nasa.jpg")
-    os.system("libreoffice --headless --convert-to pdf nasa.docx")
+    convertapi.api_secret = 'yNNCmwvXeDwST4yd'
+    convertapi.convert('pdf', {
+    'File': 'nasa.docx'
+    }, from_format = 'docx').save_files('nasa.pdf')
     return flask.render_template("image.html", src = img_url)
     os.remove("nasa.docx")
 @app.route("/pdf", methods=['GET'])
